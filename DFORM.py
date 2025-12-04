@@ -375,9 +375,10 @@ class Sampler:
             
             # Simulate system
             n_steps = int(T / dt)
+            scaled_std = noise_std * np.sqrt(dt)
             for _ in range(n_steps):
-                noise = torch.randn(self.N, self.D, device=self.device) * noise_std
-                self.samples += (self.f(self.samples) + noise) * dt
+                noise = torch.randn(self.N, self.D, device=self.device) * scaled_std
+                self.samples += (self.f(self.samples) * dt + noise)
             
             # Remove nan or inf samples
             nan_idx = torch.isnan(self.samples).any(dim=-1)
@@ -399,8 +400,9 @@ class Sampler:
 
         with torch.no_grad():
             idx = torch.randint(0, self.N, (n,), device=self.device)
-            noise = torch.randn(n, self.D, device=self.device) * self.noise_std
-            samples = self.samples[idx] + (self.f(self.samples[idx]) + noise) * self.dt
+            scaled_std = self.noise_std * np.sqrt(self.dt)
+            noise = torch.randn(n, self.D, device=self.device) * scaled_std
+            samples = self.samples[idx] + self.f(self.samples[idx]) * self.dt + noise
             # Remove nan or inf samples
             idx_bad = torch.logical_or(torch.any(torch.isnan(samples), dim=-1),
                                        torch.any(torch.isinf(samples), dim=-1))
