@@ -1,10 +1,8 @@
 # Diffeomorphic Vector Field Alignment Network (DFORM)
 
-This repository implements DFORM, a method to align and compare dynamical systems as well as to identify low-dimensional motifs in high-dimensional systems. This method is a further development of the following preprint:
+This repository implements DFORM, a method to align and compare dynamical systems as well as to identify low-dimensional motifs in high-dimensional systems. The method is described in the following preprint:
 
-Chen, R., Vedovati, G., Braver, T., & Ching, S. (2024). DFORM: Diffeomorphic vector field alignment for assessing dynamics across learned models (No. arXiv:2402.09735). arXiv. [http://arxiv.org/abs/2402.09735](http://arxiv.org/abs/2402.09735)
-
-A new preprint describing the current version of DFORM is coming soon.
+Chen, R., Vedovati, G., Braver, T., & Ching, S. (2025). Comparing Dynamical Models Through Diffeomorphic Vector Field Alignment (arXiv:2512.18566). arXiv. https://doi.org/10.48550/arXiv.2512.18566
 
 
 ## Outline
